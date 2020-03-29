@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { isAuthenticated } from "../auth/helper";
 import {
   createCategory,
@@ -12,6 +12,10 @@ const UpdateCategory = ({ match }) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const Redirection = () => {
+    return <Redirect to="/admin/dashboard"></Redirect>;
+  };
 
   const preload = categoryId => {
     getCategory(categoryId)
@@ -49,11 +53,12 @@ const UpdateCategory = ({ match }) => {
     updateCategory(match.params.categoryId, user._id, token, name)
       .then(data => {
         console.log(data);
-        if (data.error) {
+        if (data.err) {
           setError(true);
         } else {
           setError("false");
           setSuccess(true);
+          Redirection();
           setName("");
         }
       })
@@ -88,7 +93,7 @@ const UpdateCategory = ({ match }) => {
             placeholder="Category"
           ></input>
           <button className="btn-iutlined-info" onClick={onSubmit}>
-            Create Caategory
+            Update Caategory
           </button>
         </div>
       </form>

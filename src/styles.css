@@ -8,9 +8,6 @@ body {
   background: #343a40;
 }
 
-/* footer {
-  position: fixed;
-  bottom: 0px !important;
-  right: 0px;
-  left: 0px;
-} */
+footer {
+  margin-top: 90px !important;
+}

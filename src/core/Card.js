@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ImageHelper from "./helper/ImageHelper";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
+import { isAuthenticated } from "../auth/helper";
 
 const Card = ({
   product,
@@ -11,16 +12,39 @@ const Card = ({
   reload = undefined
 }) => {
   const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(false);
   const [count, setCount] = useState(product.count);
 
   const cardTitle = product ? product.name : "Product cant Load";
   const cardDescription = product ? product.description : "Default Price";
   const cardPrice = product ? product.Price : "Default Price";
 
+  const ErrorMessage = () => {
+    return (
+      <div
+        className="row mt-2
+      "
+      >
+        <div className="col-md-6 offset-sm-3  text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            Please <Link to="/signup">Login</Link> to Add Products in Cart
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const addToCart = () => {
-    addItemToCart(product, () => {
-      setRedirect(true);
-    });
+    if (!isAuthenticated()) {
+      setError(true);
+    }
+    isAuthenticated() &&
+      addItemToCart(product, () => {
+        setRedirect(true);
+      });
   };
 
   const getARedirect = redirect => {
@@ -59,6 +83,7 @@ const Card = ({
   };
   return (
     <div className="card text-white bg-dark border border-info ">
+      {ErrorMessage()}
       <div className="card-header lead">{cardTitle}</div>
       <div className="card-body">
         {getARedirect(redirect)}

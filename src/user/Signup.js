@@ -65,7 +65,7 @@ const Signup = () => {
               <input
                 onChange={handleChange("encryptPassword")}
                 className="form-control"
-                type="text"
+                type="password"
                 value={encryptPassword}
               ></input>
             </div>
@@ -113,8 +113,6 @@ const Signup = () => {
       {errorMessage()}
       {successMessage()}
       {signUpForm()}
-
-      <p className="text-center">{JSON.stringify(values)}</p>
     </Base>
   );
 };

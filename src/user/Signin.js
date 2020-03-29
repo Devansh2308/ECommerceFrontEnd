@@ -91,7 +91,7 @@ const Signin = () => {
               <input
                 onChange={handleChange("encryptPassword")}
                 className="form-control"
-                type="text"
+                type="password"
                 value={encryptPassword}
               ></input>
             </div>
@@ -110,7 +110,6 @@ const Signin = () => {
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
-      <p className="text-white text-center">{JSON.stringify(values)}</p>
     </Base>
   );
 };

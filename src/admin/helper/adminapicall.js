@@ -1,7 +1,7 @@
 import { API } from "../../backend";
 
 export const createCategory = (userId, token, category) => {
-  return fetch(`${API}category/create/${userId}`, {
+  return fetch(`http://localhost:8000/api/category/create/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -86,7 +86,9 @@ export const updateProduct = (productId, userId, token, product) => {
     .catch(error => console.log(error));
 };
 export const updateCategory = (categoryId, userId, token, category) => {
-  console.log(category);
+  console.log(categoryId, userId, token, category);
+  const Newname = { name: category };
+  console.log(JSON.stringify(Newname));
   return fetch(`${API}category/${categoryId}/${userId}`, {
     method: "PUT",
     headers: {
@@ -94,7 +96,7 @@ export const updateCategory = (categoryId, userId, token, category) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify(category)
+    body: JSON.stringify(Newname)
   })
     .then(response => {
       return response.json();

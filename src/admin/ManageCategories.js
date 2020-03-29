@@ -31,8 +31,8 @@ const ManageCategories = () => {
   const [categories, setcategories] = useState([]);
   const getAllCategories = () => {
     getCategories().then(data => {
-      if (data.eror) {
-        console.log(data.eror);
+      if (data.err) {
+        console.log(data.err);
       } else {
         setcategories(data);
       }

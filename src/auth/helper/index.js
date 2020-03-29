@@ -45,6 +45,8 @@ export const signout = next => {
   if (typeof window !== "undefined") {
     localStorage.removeItem("jwt");
     next();
+    localStorage.removeItem("cart");
+    next();
 
     return fetch(`${API}signout`, {
       method: "GET"
