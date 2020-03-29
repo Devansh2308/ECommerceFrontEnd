@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,4BAGE,eACF,CAEA,KACE,kBACF,CAEA,OACE,yBACF","file":"main.5971f78f.chunk.css","sourcesContent":[".btn,\n.jumbotron,\n.nav :hover {\n  border-radius: 0px;\n}\n\nbody {\n  background: #343a40;\n}\n\nfooter {\n  margin-top: 90px !important;\n}\n"]}
